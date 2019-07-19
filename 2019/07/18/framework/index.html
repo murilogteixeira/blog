@@ -15,7 +15,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Murilo Teixeira","sameAs":["https://github.com/murilogteixeira","https://www.linkedin.com/in/murilot/","https://www.instagram.com/murilotxr/","mailto:muriloo.teixeira@gmail.com"]},"articleBody":"Como criar um app iOS com TabBar PersonalizadaVamos começar entendendo o que é uma framework.\n","dateCreated":"2019-07-18T23:17:14-03:00","dateModified":"2019-07-18T23:19:15-03:00","datePublished":"2019-07-18T23:17:14-03:00","description":"","headline":"framework","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https:blog.murilot.xyz/2019/07/18/framework/"},"publisher":{"@type":"Organization","name":"Murilo Teixeira","sameAs":["https://github.com/murilogteixeira","https://www.linkedin.com/in/murilot/","https://www.instagram.com/murilotxr/","mailto:muriloo.teixeira@gmail.com"]},"url":"https:blog.murilot.xyz/2019/07/18/framework/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Murilo Teixeira","sameAs":["https://github.com/murilogteixeira","https://www.linkedin.com/in/murilot/","https://www.instagram.com/murilotxr/","mailto:muriloo.teixeira@gmail.com"],"image":"cover.jpg"},"articleBody":"Como criar um app iOS com TabBar PersonalizadaVamos começar entendendo o que é uma framework.\n","dateCreated":"2019-07-18T23:17:14-03:00","dateModified":"2019-07-18T23:19:15-03:00","datePublished":"2019-07-18T23:17:14-03:00","description":"","headline":"framework","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https:blog.murilot.xyz/2019/07/18/framework/"},"publisher":{"@type":"Organization","name":"Murilo Teixeira","sameAs":["https://github.com/murilogteixeira","https://www.linkedin.com/in/murilot/","https://www.instagram.com/murilotxr/","mailto:muriloo.teixeira@gmail.com"],"image":"cover.jpg","logo":{"@type":"ImageObject","url":"cover.jpg"}},"url":"https:blog.murilot.xyz/2019/07/18/framework/"}</script>
     <meta name="description" content="Como criar um app iOS com TabBar PersonalizadaVamos começar entendendo o que é uma framework.">
 <meta name="keywords" content="tecnologia,ios,swift,desenvolvimento,xcode">
 <meta property="og:type" content="blog">
@@ -32,6 +32,8 @@
     
         
     
+    
+        <meta property="og:image" content="https:blog.murilot.xyz/assets/images/cover.jpg"/>
     
     
     
@@ -65,6 +67,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -86,6 +92,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/cover.jpg" alt="Foto do autor"/>
+        
         </a>
     
 </header>
@@ -93,8 +101,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="Leia mais sobre o autor"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/cover.jpg" alt="Foto do autor"/>
+                </a>
+                <h4 class="sidebar-profile-name">Murilo Teixeira</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -501,11 +527,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/cover.jpg" alt="Foto do autor"/>
         
             <h4 id="about-card-name">Murilo Teixeira</h4>
         
