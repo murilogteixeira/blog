@@ -39,7 +39,7 @@
 
     
         
-            <link rel="stylesheet" href="/assets/css/gitment.css">
+            <link rel="stylesheet" href="/assets/css/gitalk.css">
         
     
 </head>
@@ -336,7 +336,7 @@
                 <li class="post-action">
                     <a
                         class="post-action-btn btn btn--default"
-                        href="#gitment"
+                        href="#gitalk"
                         aria-label="Leave a comment"
                     >
                         <i class="fa fa-comment"></i>
@@ -358,7 +358,8 @@
         
         
             
-                <div id="gitment"></div>
+                <div id="gitalk"></div>
+
             
         
     </div>
@@ -447,7 +448,7 @@
                 <li class="post-action">
                     <a
                         class="post-action-btn btn btn--default"
-                        href="#gitment"
+                        href="#gitalk"
                         aria-label="Leave a comment"
                     >
                         <i class="fa fa-comment"></i>
@@ -539,18 +540,18 @@
 
 
     
-        <script src="/assets/js/gitment.js"></script>
+        <script src="/assets/js/gitalk.js"></script>
         <script type="text/javascript">
           (function() {
-            new Gitment({
-              id: 'https:blog.murilot.xyz/2019/07/18/teste/',
+            new Gitalk({
+              clientID: 'f6556cb27ff5340892ac',
+              clientSecret: '8d604d6ad6c16dcfe5d7e784fc3c41df91dc713f',
+              repo: 'https://github.com/murilogteixeira/blog',
               owner: 'murilogteixeira',
-              repo: 'https://github.com/murilogteixeira/blog.git',
-              oauth: {
-                client_id: 'f6556cb27ff5340892ac',
-                client_secret: '8d604d6ad6c16dcfe5d7e784fc3c41df91dc713f'
-              }
-            }).render('gitment')
+              admin: ['murilogteixeira'],
+              id: '2019/07/18/teste/',
+              ...{"language":"pt-br","perPage":10,"distractionFreeMode":false,"enableHotKey":true,"pagerDirection":"first"}
+            }).render('gitalk')
           })()
         </script>
     
