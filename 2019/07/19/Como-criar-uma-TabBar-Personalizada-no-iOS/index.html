@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Blog - Murilo Teixeira">
+    <title>Como Criar Uma TabBar Personalizada No iOS - Blog - Murilo Teixeira</title>
+    <meta name="author" content="Murilo Teixeira">
+    
+        <meta name="keywords" content="tecnologia,ios,swift,desenvolvimento,xcode,">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Murilo Teixeira","sameAs":["https://github.com/murilogteixeira","https://www.linkedin.com/in/murilot/","https://www.instagram.com/murilotxr/","mailto:muriloo.teixeira@gmail.com"],"image":"profile.jpg"},"articleBody":"testeteste","dateCreated":"2019-07-19T22:12:27-03:00","dateModified":"2019-07-19T22:32:53-03:00","datePublished":"2019-07-19T22:12:27-03:00","description":"","headline":"Como Criar Uma TabBar Personalizada No iOS","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https:blog.murilot.xyz/2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/"},"publisher":{"@type":"Organization","name":"Murilo Teixeira","sameAs":["https://github.com/murilogteixeira","https://www.linkedin.com/in/murilot/","https://www.instagram.com/murilotxr/","mailto:muriloo.teixeira@gmail.com"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"https:blog.murilot.xyz/2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/","keywords":"swift, xcode, customtabbar"}</script>
+    <meta name="description" content="testeteste">
+<meta name="keywords" content="swift,xcode,customtabbar">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Como Criar Uma TabBar Personalizada No iOS">
+<meta property="og:url" content="https:blog.murilot.xyz/2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/index.html">
+<meta property="og:site_name" content="Blog - Murilo Teixeira">
+<meta property="og:description" content="testeteste">
+<meta property="og:locale" content="pt-br">
+<meta property="og:updated_time" content="2019-07-20T01:32:53.744Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Como Criar Uma TabBar Personalizada No iOS">
+<meta name="twitter:description" content="testeteste">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https:blog.murilot.xyz/assets/images/profile.jpg"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-lrbnkfcpsuy3jxidorc0u3wbgr9pxn3d74ycryg13dw2g2fmzpsgye8gdfqm.min.css">
+    <!--STYLES END-->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144213393-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-144213393-1');
+    </script>
+
+
+    
+
+    
+        
+            <link rel="stylesheet" href="/assets/css/gitalk.css">
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/ "
+            aria-label=""
+        >
+            Blog - Murilo Teixeira
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="Abra o link: /#about"
+            >
+        
+        
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="Foto do autor"/>
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="Leia mais sobre o autor"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="Foto do autor"/>
+                </a>
+                <h4 class="sidebar-profile-name">Murilo Teixeira</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>Apaixonado por programação e buscando sempre me atualizar sobre as novas tecnologias.</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/ "
+                            
+                            title="Início"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Início</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categorias"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categorias</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Arquivo"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Arquivo</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="Pesquisar"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Pesquisar</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="Sobre"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Sobre</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/murilogteixeira" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://www.linkedin.com/in/murilot/" target="_blank" rel="noopener" title="LinkedIn">
+                    
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://www.instagram.com/murilotxr/" target="_blank" rel="noopener" title="Instagram">
+                    
+                        <i class="sidebar-button-icon fab fa-instagram" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Instagram</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="mailto:muriloo.teixeira@gmail.com" target="_blank" rel="noopener" title="Mail">
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Como Criar Uma TabBar Personalizada No iOS
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-07-19T22:12:27-03:00">
+	
+		    19/07/2019
+    	
+    </time>
+    
+        <span>em </span>
+        
+    <a class="category-link" href="/all-categories/Tutoriais/">Tutoriais</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="teste"><a href="#teste" class="headerlink" title="teste"></a>teste</h1><h2 id="teste-1"><a href="#teste-1" class="headerlink" title="teste"></a>teste</h2>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">ETIQUETADO em</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/all-tags/customtabbar/">customtabbar</a> <a class="tag tag--primary tag--small t-link" href="/all-tags/swift/">swift</a> <a class="tag tag--primary tag--small t-link" href="/all-tags/xcode/">xcode</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2019/07/19/Criando-uma-TabBar-Personalizada/"
+                    data-tooltip="Criando Uma TabBar Personalizada No iOS.."
+                    aria-label="ANTERIOR: Criando Uma TabBar Personalizada No iOS.."
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">ANTERIOR</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <span class="hide-xs hide-sm text-small icon-mr">PRÓXIMO</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitalk"
+                        aria-label="Kommentieren"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="gitalk"></div>
+
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Murilo Teixeira. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2019/07/19/Criando-uma-TabBar-Personalizada/"
+                    data-tooltip="Criando Uma TabBar Personalizada No iOS.."
+                    aria-label="ANTERIOR: Criando Uma TabBar Personalizada No iOS.."
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">ANTERIOR</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <span class="hide-xs hide-sm text-small icon-mr">PRÓXIMO</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Diesen Beitrag teilen"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitalk"
+                        aria-label="Kommentieren"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="Foto do autor"/>
+        
+            <h4 id="about-card-name">Murilo Teixeira</h4>
+        
+            <div id="about-card-bio"><p>Apaixonado por programação e buscando sempre me atualizar sobre as novas tecnologias.</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Desenvolvedor iOS</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Brasília-DF
+            </div>
+        
+    </div>
+</div>
+
+        
+            <div id="algolia-search-modal" class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-button"><i class="fa fa-times"></i></span>
+            <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+                <span class="searchby-algolia-text text-color-light text-small">by</span>
+                <img class="searchby-algolia-logo" src="/assets/images/logo-algolia-nebula-blue-full.svg">
+            </a>
+            <i class="search-icon fa fa-search"></i>
+            <form id="algolia-search-form">
+                <input type="text" id="algolia-search-input" name="search"
+                    class="form-control input--large search-input" placeholder="Search "
+                    />
+            </form>
+        </div>
+        <div class="modal-body">
+            <div class="no-result text-color-light text-center">não foram encontrados artigos</div>
+            <div class="results">
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https:blog.murilot.xyz/2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/"
+                            aria-label=": Como Criar Uma TabBar Personalizada No iOS"
+                        >
+                            <h3 class="media-heading">Como Criar Uma TabBar Personalizada No iOS</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    19 de Jul de 2019
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https:blog.murilot.xyz/2019/07/19/Criando-uma-TabBar-Personalizada/"
+                            aria-label=": Criando Uma TabBar Personalizada No iOS.."
+                        >
+                            <h3 class="media-heading">Criando Uma TabBar Personalizada No iOS..</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    19 de Jul de 2019
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+                <div class="media">
+                    
+                    <div class="media-body">
+                        <a
+                            class="link-unstyled"
+                            href="https:blog.murilot.xyz/2019/07/19/teste/"
+                            aria-label=": Teste"
+                        >
+                            <h3 class="media-heading">Teste</h3>
+                        </a>
+                        <span class="media-meta">
+                            <span class="media-date text-small">
+                                
+                                    19 de Jul de 2019
+                                
+                            </span>
+                        </span>
+                        <div class="media-content hide-xs font-merryweather"></div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <hr>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="results-count text-medium"
+                data-message-zero="não foram encontrados artigos"
+                data-message-one="1 artigo encontrados"
+                data-message-other="{n} artigos encontrados">
+                3 artigos encontrados
+            </p>
+        </div>
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-z3djdpmrc0tqkr4rrjjreskwmacfdpurgmfwz7jdbiusgb7wtccjmvdhc6ui.min.js"></script>
+<!--SCRIPTS END-->
+
+
+    
+        <script src="/assets/js/gitalk.js"></script>
+        <script type="text/javascript">
+          (function() {
+            new Gitalk({
+              clientID: 'c299bee755e1147566a0',
+              clientSecret: '9ba1c63adafe3eb58471bb1a681adb956c7be238',
+              repo: 'blog',
+              owner: 'murilogteixeira',
+              admin: ['murilogteixeira'],
+              id: '2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/',
+              ...{"language":"pt-br","perPage":10,"distractionFreeMode":false,"enableHotKey":true,"pagerDirection":"last"}
+            }).render('gitalk')
+          })()
+        </script>
+    
+
+
+
+    <script src="/assets/js/moment-with-locales.js"></script>
+    <script src="/assets/js/algoliasearch.js"></script>
+    <script>
+      var algoliaClient = algoliasearch('3O4QM7EOSS', 'a9ed1e459117f1113e5754dc32574307');
+      var algoliaIndex = algoliaClient.initIndex('blog');
+    </script>
+
+
+    </body>
+</html>
