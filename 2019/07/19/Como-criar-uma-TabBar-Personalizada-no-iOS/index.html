@@ -13,7 +13,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Murilo Teixeira","sameAs":["https://github.com/murilogteixeira","https://www.linkedin.com/in/murilot/","https://www.instagram.com/murilotxr/","mailto:muriloo.teixeira@gmail.com"]},"articleBody":"testeteste","dateCreated":"2019-07-19T22:12:27-03:00","dateModified":"2019-07-19T22:32:53-03:00","datePublished":"2019-07-19T22:12:27-03:00","description":"","headline":"Como Criar Uma TabBar Personalizada No iOS","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https:blog.murilot.xyz/2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/"},"publisher":{"@type":"Organization","name":"Murilo Teixeira","sameAs":["https://github.com/murilogteixeira","https://www.linkedin.com/in/murilot/","https://www.instagram.com/murilotxr/","mailto:muriloo.teixeira@gmail.com"]},"url":"https:blog.murilot.xyz/2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/","keywords":"swift, xcode, customtabbar"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Murilo Teixeira","sameAs":["https://github.com/murilogteixeira","https://www.linkedin.com/in/murilot/","https://www.instagram.com/murilotxr/","mailto:muriloo.teixeira@gmail.com"],"image":"profile.jpg"},"articleBody":"testeteste","dateCreated":"2019-07-19T22:12:27-03:00","dateModified":"2019-07-19T22:32:53-03:00","datePublished":"2019-07-19T22:12:27-03:00","description":"","headline":"Como Criar Uma TabBar Personalizada No iOS","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https:blog.murilot.xyz/2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/"},"publisher":{"@type":"Organization","name":"Murilo Teixeira","sameAs":["https://github.com/murilogteixeira","https://www.linkedin.com/in/murilot/","https://www.instagram.com/murilotxr/","mailto:muriloo.teixeira@gmail.com"],"image":"profile.jpg","logo":{"@type":"ImageObject","url":"profile.jpg"}},"url":"https:blog.murilot.xyz/2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/","keywords":"swift, xcode, customtabbar"}</script>
     <meta name="description" content="testeteste">
 <meta name="keywords" content="swift,xcode,customtabbar">
 <meta property="og:type" content="blog">
@@ -30,6 +30,8 @@
     
         
     
+    
+        <meta property="og:image" content="https:blog.murilot.xyz/assets/images/profile.jpg"/>
     
     
     
@@ -63,6 +65,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -84,6 +90,8 @@
             >
         
         
+            <img class="header-picture" src="/assets/images/profile.jpg" alt="Foto do autor"/>
+        
         </a>
     
 </header>
@@ -91,8 +99,26 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a
+                    href="/#about"
+                    aria-label="Leia mais sobre o autor"
+                >
+                    <img class="sidebar-profile-picture" src="/assets/images/profile.jpg" alt="Foto do autor"/>
+                </a>
+                <h4 class="sidebar-profile-name">Murilo Teixeira</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>Apaixonado por programação e buscando sempre me atualizar sobre as novas tecnologias.</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -282,8 +308,8 @@
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
                     href="/2019/07/19/Criando-uma-TabBar-Personalizada/"
-                    data-tooltip="Criando Uma TabBar Personalizada No iOS."
-                    aria-label="ANTERIOR: Criando Uma TabBar Personalizada No iOS."
+                    data-tooltip="Criando Uma TabBar Personalizada No iOS.."
+                    aria-label="ANTERIOR: Criando Uma TabBar Personalizada No iOS.."
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -368,8 +394,8 @@
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
                     href="/2019/07/19/Criando-uma-TabBar-Personalizada/"
-                    data-tooltip="Criando Uma TabBar Personalizada No iOS."
-                    aria-label="ANTERIOR: Criando Uma TabBar Personalizada No iOS."
+                    data-tooltip="Criando Uma TabBar Personalizada No iOS.."
+                    aria-label="ANTERIOR: Criando Uma TabBar Personalizada No iOS.."
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -432,25 +458,37 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
         
+            <img id="about-card-picture" src="/assets/images/profile.jpg" alt="Foto do autor"/>
+        
             <h4 id="about-card-name">Murilo Teixeira</h4>
         
-            <div id="about-card-bio"><p>author.bio</p>
+            <div id="about-card-bio"><p>Apaixonado por programação e buscando sempre me atualizar sobre as novas tecnologias.</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>author.job</p>
+                <p>Desenvolvedor iOS</p>
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Brasília-DF
+            </div>
         
     </div>
 </div>
