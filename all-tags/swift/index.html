@@ -264,23 +264,23 @@
                     
                         <a
                             class="link-unstyled"
-                            href="/2019/07/19/Criando-uma-TabBar-Personalizada/"
-                            aria-label=": Criando Uma TabBar Personalizada No iOS.."
+                            href="/2019/10/05/weak-strong-unowner/"
+                            aria-label=": O Que É Weak, Strong E Unowner No Swift?"
                         >
-                            Criando Uma TabBar Personalizada No iOS..
+                            O Que É Weak, Strong E Unowner No Swift?
                         </a>
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2019-07-19T22:41:14-03:00">
+    <time datetime="2019-10-05T21:24:40-03:00">
 	
-		    19/07/2019
+		    05/10/2019
     	
     </time>
     
         <span>em </span>
         
-    <a class="category-link" href="/all-categories/Tutoriais/">Tutoriais</a>
+    <a class="category-link" href="/all-categories/Swift/">Swift</a>
 
 
     
@@ -289,7 +289,13 @@
             </div>
             
                 <div class="postShorten-content">
-                    <h1 id="teste"><a href="#teste" class="headerlink" title="teste"></a>teste</h1><h2 id="teste-1"><a href="#teste-1" class="headerlink" title="teste"></a>teste</h2>
+                    <h1 id="O-que-e-Weak-Strong-e-Unowner-no-Swift"><a href="#O-que-e-Weak-Strong-e-Unowner-no-Swift" class="headerlink" title="O que é Weak, Strong e Unowner no Swift?"></a>O que é Weak, Strong e Unowner no Swift?</h1><p>Antes de falarmos sobre o que significa a palavra <code>weak</code>, <code>strong</code> e <code>unowner</code>, precisamos entender o que significa o Contador de Referência Automática do swift. Vamos lá?</p>
+<h2 id="O-que-e-ARC"><a href="#O-que-e-ARC" class="headerlink" title="O que é ARC?"></a>O que é ARC?</h2><p>Já sabemos que o Swift nos ajuda em tudo o que é possível. Quando o assunto é gerenciamento de memória, estamos nos referindo ao Contador de Referência Automática (ARC - do inglês <code>Automatic Reference Counting</code>) para gerenciar o uso da memória do nosso aplicativo e liberar espaço desnecessário automaticamente para evitar vazamento de memória. O ARC libera automaticamente a memória usada pelas instâncias de classe quando essas não são mais utilizadas, porém, em alguns casos ele não consegue realizar esse gerenciamento e é aí que precisamos dar uma certa atenção para a memória do nosso aplicativo.</p>
+<h2 id="Como-o-ARC-funciona"><a href="#Como-o-ARC-funciona" class="headerlink" title="Como o ARC funciona?"></a>Como o ARC funciona?</h2><p>Sempre que criamos uma instância de uma classe o ARC aloca um espaço na memória para essa instância. Esse espaço na memória armazena informações sobre o tipo da instância e os valores contidos nela. Mas quando uma instância não é mais necessária o ARC libera esse espaço para que ele possa ser usado em qualquer outra situação e não ocupe espaço desnecessário da memória do nosso dispositivo.</p>
+<p>Para garantir que uma instância de classe não desapareça mesmo sendo necessária, o ARC rastreia todos os atributos que podem estar referindo essa instância de classe para que ela não seja desalocada. Enquanto uma instância estiver com referência ativa o ARC não irá desalocar esse espaço na memória.</p>
+<p>Isso só é possível acontecer porque quando atribuímos uma instância a uma variável, constante ou propriedade, é criada uma referência forte à instância da classe. Essa referência é chamada de referência “forte” porque enquanto essa referência permanecer ativa ela não será desalocada da memória.</p>
+<p>Fonte: <a href="https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html" target="_blank" rel="noopener">Automatic Reference Counting - The swift programming language<br>(Swift 5.1)</a></p>
+
                     
                         
 
@@ -298,64 +304,7 @@
                     
                         <p>
                             <a
-                                href="/2019/07/19/Criando-uma-TabBar-Personalizada/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comentar e compartilhar
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/"
-                            aria-label=": Como Criar Uma TabBar Personalizada No iOS"
-                        >
-                            Como Criar Uma TabBar Personalizada No iOS
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2019-07-19T22:12:27-03:00">
-	
-		    19/07/2019
-    	
-    </time>
-    
-        <span>em </span>
-        
-    <a class="category-link" href="/all-categories/Tutoriais/">Tutoriais</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h1 id="teste"><a href="#teste" class="headerlink" title="teste"></a>teste</h1><h2 id="testee"><a href="#testee" class="headerlink" title="testee"></a>testee</h2>
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/#post-footer"
+                                href="/2019/10/05/weak-strong-unowner/#post-footer"
                                 class="postShorten-excerpt_link link"
                                 aria-label=""
                             >
@@ -452,61 +401,15 @@
                     <div class="media-body">
                         <a
                             class="link-unstyled"
-                            href="https:blog.murilot.xyz/2019/07/19/Como-criar-uma-TabBar-Personalizada-no-iOS/"
-                            aria-label=": Como Criar Uma TabBar Personalizada No iOS"
+                            href="https:blog.murilot.xyz/2019/10/05/weak-strong-unowner/"
+                            aria-label=": O Que É Weak, Strong E Unowner No Swift?"
                         >
-                            <h3 class="media-heading">Como Criar Uma TabBar Personalizada No iOS</h3>
+                            <h3 class="media-heading">O Que É Weak, Strong E Unowner No Swift?</h3>
                         </a>
                         <span class="media-meta">
                             <span class="media-date text-small">
                                 
-                                    19 de Jul de 2019
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-body">
-                        <a
-                            class="link-unstyled"
-                            href="https:blog.murilot.xyz/2019/07/19/Criando-uma-TabBar-Personalizada/"
-                            aria-label=": Criando Uma TabBar Personalizada No iOS.."
-                        >
-                            <h3 class="media-heading">Criando Uma TabBar Personalizada No iOS..</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    19 de Jul de 2019
-                                
-                            </span>
-                        </span>
-                        <div class="media-content hide-xs font-merryweather"></div>
-                    </div>
-                    <div style="clear:both;"></div>
-                    <hr>
-                </div>
-                
-                <div class="media">
-                    
-                    <div class="media-body">
-                        <a
-                            class="link-unstyled"
-                            href="https:blog.murilot.xyz/2019/07/19/teste/"
-                            aria-label=": Teste"
-                        >
-                            <h3 class="media-heading">Teste</h3>
-                        </a>
-                        <span class="media-meta">
-                            <span class="media-date text-small">
-                                
-                                    19 de Jul de 2019
+                                    5 de Out de 2019
                                 
                             </span>
                         </span>
@@ -523,7 +426,7 @@
                 data-message-zero="não foram encontrados artigos"
                 data-message-one="1 artigo encontrados"
                 data-message-other="{n} artigos encontrados">
-                3 artigos encontrados
+                1 artigo encontrados
             </p>
         </div>
     </div>
