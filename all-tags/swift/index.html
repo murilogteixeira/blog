@@ -9,12 +9,12 @@
     <title>Tag: swift - Blog - Murilo Teixeira</title>
     <meta name="author" content="Murilo Teixeira">
     
-        <meta name="keywords" content="tecnologia,ios,swift,desenvolvimento,xcode,">
+        <meta name="keywords" content="tecnologia,tech,technology,ios,swift,desenvolvimento,development,xcode,">
     
     
     
     <script type="application/ld+json">{}</script>
-    <meta name="keywords" content="tecnologia,ios,swift,desenvolvimento,xcode">
+    <meta name="keywords" content="tecnologia,tech,technology,ios,swift,desenvolvimento,development,xcode">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Blog - Murilo Teixeira">
 <meta property="og:url" content="https:blog.murilot.xyz/all-tags/swift/index.html">
@@ -289,7 +289,7 @@
             </div>
             
                 <div class="postShorten-content">
-                    <p>Antes de falarmos sobre o que significa a palavra <code>weak</code>, <code>strong</code> e <code>unowner</code>, precisamos conhecer o ARC (Contador de Referência Automática) do swift. Vamos lá?</p>
+                    <p>Antes de falarmos sobre o que significa a palavra <code>weak</code>, <code>strong</code> e <code>unowner</code>, precisamos conhecer o ARC do swift. Vamos lá?</p>
 <h1 id="table-of-contents">Tabela de Conteúdos</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#O-que-e-ARC"><span class="toc-text">O que é ARC?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Como-o-ARC-funciona"><span class="toc-text">Como o ARC funciona?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARC-na-pratica"><span class="toc-text">ARC na prática</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ciclos-de-referencia-forte-entre-instancias-de-classe"><span class="toc-text">Ciclos de referência forte entre instâncias de classe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Como-o-ciclo-de-referencia-e-causado"><span class="toc-text">Como o ciclo de referência é causado</span></a></li></ol>
 
 <h2 id="O-que-e-ARC"><a href="#O-que-e-ARC" class="headerlink" title="O que é ARC?"></a>O que é ARC?</h2><p>Já sabemos que o Swift nos ajuda em tudo o que é possível. Quando o assunto é gerenciamento de memória, estamos nos referindo ao Contador de Referência Automática (ARC - do inglês <code>Automatic Reference Counting</code>) para gerenciar o uso da memória do nosso aplicativo e liberar espaço desnecessário automaticamente para evitar vazamento de memória. O ARC libera automaticamente a memória usada pelas instâncias de classe quando essas não são mais utilizadas, porém, em alguns casos ele não consegue realizar esse gerenciamento e é aí que precisamos dar uma certa atenção para a memória do nosso aplicativo.</p>
@@ -331,7 +331,8 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jose = <span class="type">Pessoa</span>(nome: <span class="string">"José da Silva"</span>)</span><br><span class="line">apt401 = <span class="type">Apartamento</span>(unidade: <span class="number">401</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Agora a variável <code>jose</code> tem uma forte referência para a nova instância de <code>Pessoa</code> e a variável <code>apt401</code> tem uma forte referência para a nova instância de <code>Apartamento</code>.</p>
-<img src="/2019/10/05/weak-strong-unowner/img1.png" title="This is an example image">
+<img src="/2019/10/05/weak-strong-unowner/img1.png" title="Imagem ilustração relacionamentos">
+
 
 
 
