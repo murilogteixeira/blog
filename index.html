@@ -330,7 +330,23 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jose = <span class="type">Pessoa</span>(nome: <span class="string">"José da Silva"</span>)</span><br><span class="line">apt401 = <span class="type">Apartamento</span>(unidade: <span class="number">401</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Agora a variável <code>jose</code> tem uma forte referência para a nova instância de <code>Pessoa</code> e a variável <code>apt401</code> tem uma forte referência para a nova instância de <code>Apartamento</code>.</p>
-<img src="/2019/10/05/weak-strong-unowner/img1.png" title="Imagem ilustração relacionamentos">
+<img src="/2019/10/05/weak-strong-unowner/img1.png" title="Imagem com representação da referência forte entre a variável e a instância da classe.">
+
+<p>Vamos agora vincular os objetos para que uma pessoa tenha um apartamento e um apartamento tenha uma pessoa.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jose.apartamento = apt401</span><br><span class="line">apt401.inquilino = jose</span><br></pre></td></tr></table></figure>
+
+<p>Veja como as referências fortes entre os objetos são criadas:</p>
+<img src="/2019/10/05/weak-strong-unowner/img2.png" title="Imagem ilustração do relacionamento forte entre os objetos.">
+
+<p>O problema nesse exemplo é que criamos um ciclo de referência em que a instância de <code>Pessoa</code> tem uma forte referência para a instância de <code>Apartamento</code> e <code>Apartamento</code> tem uma forte referência para a instância de <code>Pessoa</code>. Com isso o contator de refereência nunca cairá para zero, fazendo quando quebramos as referências e as instâncias nunca serão desalocadas:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jose.apartamento = <span class="literal">nil</span></span><br><span class="line">apt401.inquilino = <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
+
+<p>Observe que nenhum desinicializador foi chamado quando definimos as variáveis como <code>nil</code>, pois o forte ciclo de refereência impede que as instâncias de <code>Pessoa</code> e <code>Apartametno</code> sejam desalocadas e as duas continuam alocadas, causando um vazamento de memória, ou seja, as referências nunca poderão ser quebradas.</p>
+<img src="/2019/10/05/weak-strong-unowner/img3.png" title="Imagem ilustração do forte ciclo de referência entre as instâncias.">
+
+
+
+
 
 <p>Em construção…</p>
 <p>Fonte: <a href="https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html" target="_blank" rel="noopener">Automatic Reference Counting - The swift programming language<br>(Swift 5.1)</a></p>
