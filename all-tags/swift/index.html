@@ -359,6 +359,18 @@
 <p>Veja como ficaram as referências:</p>
 <img src="/2019/10/05/weak-strong-unowner/img4.png" title="Imagem ilustração da referência fraca entre as instâncias.">
 
+<p>A instância de <code>Pessoa</code> ainda possui uma referência forte à instância de <code>Apartamento</code>, mas a instância de <code>Apartamento</code> possui uma referência fraca para a instância de <code>Pessoa</code>. Portanto, se quebrarmos a referência forte mantida pela instância de <code>jose</code>, definindo o seu valor para <code>nil</code>, não há mais referência forte para instância de <code>Pessoa</code>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jose = <span class="literal">nil</span></span><br><span class="line"><span class="comment">// Print "Instância José da Silva foi desalocada."</span></span><br></pre></td></tr></table></figure>
+
+<p>Como não há mais referência forte para a instância de <code>Pessoa</code>, ela é desalocada e a variável <code>inquilino</code> da instância de <code>Apartamento</code> é definida como <code>nil</code>:</p>
+<img src="/2019/10/05/weak-strong-unowner/img5.png" title="Imagem ilustração da referência forte quebrada e a instância jose desalocada.">
+
+<p>A única referência forte para a instância de <code>Apartamento</code> é a variável <code>apt401</code>. Se quebrarmos essa referência forte não haverá mais referência forte para a instância de <code>Apartamento</code>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt401 = <span class="literal">nil</span></span><br><span class="line"><span class="comment">// Print "Instância 401 foi desalocada."</span></span><br></pre></td></tr></table></figure>
+
+<p>Agora que não há mais referência forte para a instância de <code>Apartamento</code> ela também é desalocada:</p>
+<img src="/2019/10/05/weak-strong-unowner/img6.png" title="Imagem ilustração da referência forte quebrada e a instância apt401 desalocada.">
+
 <h3 id="Referencias-Nao-Proprietarias-Unowner"><a href="#Referencias-Nao-Proprietarias-Unowner" class="headerlink" title="Referências Não Proprietárias (Unowner)"></a>Referências Não Proprietárias (Unowner)</h3><p>Fonte: <a href="https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html" target="_blank" rel="noopener">Automatic Reference Counting - The swift programming language<br>(Swift 5.1)</a></p>
 
                     
