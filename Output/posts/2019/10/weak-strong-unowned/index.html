@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8"/><meta property="og:site_name" content="Murilo Teixeira"/><link rel="canonical" href="https://murilot.com/posts/2019/10/weak-strong-unowned"/><meta name="twitter:url" content="https://murilot.com/posts/2019/10/weak-strong-unowned"/><meta property="og:url" content="https://murilot.com/posts/2019/10/weak-strong-unowned"/><title>Weak, Strong e Unowned | Murilo Teixeira</title><meta name="twitter:title" content="Weak, Strong e Unowned | Murilo Teixeira"/><meta property="og:title" content="Weak, Strong e Unowned | Murilo Teixeira"/><meta name="description" content="Entendendo sobre ARC e como evitar vazamento de memória"/><meta name="twitter:description" content="Entendendo sobre ARC e como evitar vazamento de memória"/><meta property="og:description" content="Entendendo sobre ARC e como evitar vazamento de memória"/><meta name="twitter:card" content="summary"/><link rel="stylesheet" href="/styles.css" type="text/css"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="shortcut icon" href="/images/favicon.png" type="image/png"/><link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to Murilo Teixeira"/></head><body class="item-page"><header><div class="wrapper"><a href="/" class="site-name">Murilo Teixeira</a><nav><ul><li><a href="/posts" class="selected">Artigos</a></li><li><a href="/portfolio">Portifólio</a></li><li><a href="/about">Sobre mim</a></li></ul></nav></div></header><div class="wrapper"><article><div class="content"><h1>Weak, Strong e Unowned</h1><p>Antes de falarmos sobre o que significam as palavras-chave <code>weak</code>, <code>strong</code> e <code>unowned</code>, precisamos conhecer e entender o ARC do swift. Vamos lá?</p><p><em>Caso queira pular o conteúdo sobre o ARC, vá para a sessão 6: **</em>Resolvendo ciclos de referência fortes entre instâncias de classe**<em>.</em></p><!-- toc --><h2>O que é ARC?</h2><p>Já sabemos que o Swift nos ajuda em tudo o que é possível. Quando o assunto é gerenciamento de memória, estamos nos referindo ao Contador de Referência Automática (ARC - do inglês <code>Automatic Reference Counting</code>) para gerenciar o uso da memória do nosso aplicativo e liberar espaço desnecessário automaticamente para evitar vazamento de memória. O ARC libera automaticamente a memória usada pelas instâncias de classe quando essas não são mais utilizadas, porém, em alguns casos ele não consegue realizar esse gerenciamento e é aí que precisamos dar uma certa atenção para a memória do nosso aplicativo.</p><h2>Como o ARC funciona?</h2><p>Sempre que criamos uma instância de uma classe o ARC aloca um espaço na memória para essa instância. Esse espaço na memória armazena informações sobre o tipo da instância e os valores contidos nela. Mas quando uma instância não é mais necessária o ARC libera esse espaço para que ele possa ser usado em qualquer outra situação e não ocupe espaço desnecessário da memória do nosso dispositivo.</p><p>Para garantir que uma instância de classe não desapareça mesmo sendo necessária, o ARC rastreia todos os atributos que podem estar referindo essa instância de classe para que ela não seja desalocada. Enquanto uma instância estiver com referência ativa o ARC não irá desalocar esse espaço na memória.</p><p>Isso só é possível acontecer porque quando atribuímos uma instância a uma variável, constante ou propriedade, é criada uma referência forte à instância da classe. Essa referência é chamada de referência "forte" (<code>strong</code>) porque enquanto essa referência permanecer ativa ela não será desalocada da memória.</p><h2>ARC na prática</h2><p>Vamos criar uma classe simples para exemplificar chamada <code>Pessoa</code> que define uma constante chamada <code>nome</code>:</p><pre><code class="language-swift">class Pessoa {
+    let nome: String
+
+    init(nome: String) {
+        self.nome = nome
+        print("Instância \(nome) foi alocada.")
+    }
+
+    deinit{
+        print("Instância \(nome) foi desalocada.")
+    }
+}
+</code></pre><p>Como podemos visualizar, essa classe possui um inicializador, que define a constante <code>nome</code>, e um desinicializador imprimindo uma mensagem quando a classe é alocada e desalocada.</p><p>Agora vamos declarar variáveis para receber referências de instâncias do tipo <code>Pessoa</code>:</p><pre><code class="language-swift">var referencia1: Pessoa? // nil
+var referencia2: Pessoa? // nil
+var referencia3: Pessoa? // nil
+</code></pre><p>As variáveis que criamos ainda não fazem referência a nenhuma instância. Então, vamos criar uma instância do tipo <code>Pessoa</code> e atribuir a uma das variáveis que acabamos de criar:</p><pre><code class="language-swift">referencia1 = Pessoa(nome: "José da Silva")
+// Print: "Instância José da Silva foi alocada."
+</code></pre><p>Nesse momento será impresso na tela "Instância José da Silva foi alocada." porque chamamos o construtor de <code>Pessoa</code> confirmando que a inicialização aconteceu.</p><p>Agora existe uma refereência forte para a instância de <code>Pessoa</code> atribuída a <code>referencia1</code>, portanto o ARC vai garantir que essa instância permaneça na memória enquanto essa referência existir.</p><p>Se atribuirmos a mesma instância de <code>Pessoa</code> a mais duas variáveis, teremos 3 referências fortes para a mesma instância.</p><pre><code class="language-swift">referencia2 = referencia1
+referencia3 = referencia1
+</code></pre><p>Se quebrarmos dois dessas referências, incluindo a referencia original, ainda terá uma referência forte e a instância não será desalocada.</p><pre><code class="language-swift">referencia1 = nil
+referencia3 = nil
+</code></pre><p>Se quebrarmos a última referência para a instância o ARC irá desalocar o espaço que foi alocado anteriormente na memória.</p><pre><code class="language-swift">referencia2 = nil
+// Print: "Instância José da Silva foi desalocada."
+</code></pre><h2>Ciclos de Referência Forte (Strong) entre instâncias de classe</h2><p>No exemplo acima o ARC conseguiu rastrear todas as referências à instância de <code>Pessoa</code> e desalocou quando não havia mais nenhuma referência ativa.</p><p>No entanto, há casos em que o ARC não consegue desalocar a memória ocupada por instâncias caso uma instância referencie uma a outra, mantendo-as sempre ativas e ela nunca terá um número zero de instancias ativas.</p><p>Para solucionar esse problema podemos definir alguns dos relacionamentos entre classes como referência fraca (<code>weak</code>) ou não proprietária (<code>unowned</code>), em vez de fortes.</p><h2>Como o ciclo de referência forte é causado</h2><p>Abaixo segue um exemplo de como um ciclo de referência pode ser causado acidentalmente.</p><pre><code class="language-swift">class Pessoa {
+    let nome: String
+    var apartamento: Apartamento?
+
+    init(nome: String) {
+        self.nome = nome
+    }
+
+    deinit{
+        print("Instância \(nome) foi desalocada.")
+    }
+}
+
+class Apartamento {
+    let unidade: Int
+    var inquilino: String?
+
+    init(unidade: String) {
+        self.unidade = unidade
+    }
+
+    deinit {
+        print("Instância \(unidade) foi desalocada.")
+    }
+}
+</code></pre><p>A classe <code>Pessoa</code> possui uma variável chamada <code>apartamento</code> que referencia uma instância de <code>Apartamento</code> e a classe <code>Apartamento</code> possui uma variável chamada <code>inquilino</code> que referencia uma instância de <code>Pessoa</code>, ambas são opcionais pois um inquilino pode não ter um apartamento e um apartamento pode não ter um inquilino.</p><p>Agora vamos declarar duas variáveis, uma para <code>Pessoa</code> e uma para <code>Apartamento</code>, ambas opcionais com valor inicial <code>nil</code>.</p><pre><code class="language-swift">var jose: Pessoa?
+var apt401: Apartamento?
+</code></pre><p>Em seguida vamos criar instâncias para <code>Pessoa</code> e <code>Apartamento</code> e atribuir referências às variáveis.</p><pre><code class="language-swift">jose = Pessoa(nome: "José da Silva")
+apt401 = Apartamento(unidade: 401)
+</code></pre><p>Agora a variável <code>jose</code> tem uma forte referência para a nova instância de <code>Pessoa</code> e a variável <code>apt401</code> tem uma forte referência para a nova instância de <code>Apartamento</code>.</p><img width="100%" alt="Imagem com representação da referência forte entre a variável e a instância da classe." src="/images/2019/10/weak-strong-unowned/img1.png" /><p>Vamos agora vincular os objetos para que uma pessoa tenha um apartamento e um apartamento tenha uma pessoa.</p><pre><code class="language-swift">jose!.apartamento = apt401
+apt401!.inquilino = jose
+</code></pre><p>Veja como as referências fortes entre os objetos são criadas:</p><img width="100%" alt="Imagem ilustração do relacionamento forte entre os objetos." src="/images/2019/10/weak-strong-unowned/img2.png" /><p>O problema nesse exemplo é que criamos um ciclo de referência em que a instância de <code>Pessoa</code> tem uma forte referência para a instância de <code>Apartamento</code> e <code>Apartamento</code> tem uma forte referência para a instância de <code>Pessoa</code>. Com isso o contator de refereência nunca cairá para zero, fazendo quando quebramos as referências e as instâncias nunca serão desalocadas:</p><pre><code class="language-swift">jose!.apartamento = nil
+apt401!.inquilino = nil
+</code></pre><p>Observe que nenhum desinicializador foi chamado quando definimos as variáveis como <code>nil</code>, pois o forte ciclo de refereência impede que as instâncias de <code>Pessoa</code> e <code>Apartametno</code> sejam desalocadas e as duas continuam alocadas, causando um vazamento de memória, ou seja, as referências nunca poderão ser quebradas.</p><img width="100%" alt="Imagem ilustração do forte ciclo de referência entre as instâncias." src="/images/2019/10/weak-strong-unowned/img3.png"/><h2>Resolvendo ciclos de referência fortes entre instâncias de classe</h2><p>Existem duas maneiras de resolver o problema de ciclos de referência forte no swift: <strong>Referências Fracas</strong> e <strong>Referências Não Proprietárias</strong>.</p><p>É indicado usar a <strong>Referência Fraca</strong> quando o tempo de vida da instância é curto, ou seja, quando em algum momento ela vai deixar de existir. Já a <strong>Referência Não Proprietária</strong> é indicada quando o tempo de vida da instância é igual ou mais longo que o tempo de vida da instância que possui a referência. Ambas são usadas para evitar o ciclo de referência forte e informar ao ARC que essa instância pode ser desalocada quando não houver referências a ela.</p><h3>Referências Fracas (Weak)</h3><p>Uma referencia fraca é uma referência que não possui uma presença forte na instância a que se refere, dessa forma, não impede que o ARC descarte essa instância e impedindo que essa referência crie um ciclo de referência forte. Para indicar uma variável como referência fraca utilizamos a palavra-chave <code>weak</code> antes da variável.</p><p>Quando o ARC desaloca a instância que está sendo referenciada automaticamente define o valor da variável para <code>nil</code>, portanto, precisa ser sempre declarada como <code>var</code> e como opcional para que, em tempo de execução, o ARC possa definir o novo valor à variável.</p><p>Agora vamos usar o nosso exemplo das classes <code>Pessoa</code> e <code>Apartamento</code> e realizar uma alteração simples mas que vai resolver o problema do ciclo de referência forte. Vamos indicar que a variável <code>inquilino</code> da classe <code>Apartamento</code> é uma referência fraca:</p><pre><code class="language-swift">class Pessoa {
+    let nome: String
+    var apartamento: Apartamento?
+
+    init(nome: String) {
+        self.nome = nome
+    }
+
+    deinit{
+        print("Instância \(nome) foi desalocada.")
+    }
+}
+
+class Apartamento {
+    let unidade: Int
+    weak var inquilino: String?
+
+    init(unidade: String) {
+        self.unidade = unidade
+    }
+
+    deinit {
+        print("Instância \(unidade) foi desalocada.")
+    }
+}
+</code></pre><p>Agora vamos criar as referências fortes entre as variáveis <code>jose</code> e <code>apt401</code> e os links entre as instâncias como fizemos anteriormente:</p><pre><code class="language-swift">var jose: Pessoa?
+var apt401: Apartamento?
+
+jose = Pessoa(nome: "José da Silva")
+apt401 = Apartamento(unidade: 401)
+
+jose!.apartamento = apt401
+apt401!.inquilino = jose
+</code></pre><p>Veja como ficaram as referências:</p><img width="100%" alt="Imagem ilustração da referência fraca entre as instâncias." src="/images/2019/10/weak-strong-unowned/img4.png" /><p>A instância de <code>Pessoa</code> ainda possui uma referência forte à instância de <code>Apartamento</code>, mas a instância de <code>Apartamento</code> possui uma referência fraca para a instância de <code>Pessoa</code>. Portanto, se quebrarmos a referência forte mantida pela instância de <code>jose</code>, definindo o seu valor para <code>nil</code>, não há mais referência forte para instância de <code>Pessoa</code>:</p><pre><code class="language-swift">jose = nil
+// Print "Instância José da Silva foi desalocada."
+</code></pre><p>Como não há mais referência forte para a instância de <code>Pessoa</code>, ela é desalocada e a variável <code>inquilino</code> da instância de <code>Apartamento</code> é definida como <code>nil</code>:</p><img width="100%" alt="Imagem ilustração da referência forte quebrada e a instância jose desalocada." src="/images/2019/10/weak-strong-unowned/img5.png" /><p>A única referência forte para a instância de <code>Apartamento</code> é a variável <code>apt401</code>. Se quebrarmos essa referência forte não haverá mais referência forte para a instância de <code>Apartamento</code>:</p><pre><code class="language-swift">apt401 = nil
+// Print "Instância 401 foi desalocada."
+</code></pre><p>Agora que não há mais referência forte para a instância de <code>Apartamento</code> ela também é desalocada:</p><img width="100%" alt="Imagem ilustração da referência forte quebrada e a instância apt401 desalocada." src="/images/2019/10/weak-strong-unowned/img6.png" /><h3>Referências Não Proprietárias (Unowned)</h3><p>Continua...</p><p>Fonte: <a href="https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html">Automatic Reference Counting - The swift programming language (Swift 5.1)</a></p></div><span>Tagged with: </span><ul class="tag-list"><li><a href="/tags/arc">arc</a></li><li><a href="/tags/swift">swift</a></li></ul></article></div><footer><p>Generated using <a href="https://github.com/johnsundell/publish">Publish</a></p><p><a href="/feed.rss">RSS feed</a></p></footer></body></html>
